@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css?family=Audiowide|Waiting+for+the+Sunrise');
+
+
+@media print {
+  #info {
+    display: none !important;
+  }
+  #wrapper {
+    padding: 0px;
+  }
+  .ui-resizable-handle {
+    display: none !important;
+  }
+}
+
+#player {
+  position: fixed;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  margin: auto;
+}
+
+.gd-default .peak-3 .section {
+  transform: scale(1.25);
+}
+
+.gd-default .peak-4 .section {
+  padding: 40px;
+}
+
+.gd-default .peak-8 .inner {
+  box-shadow: inset 0 0 50px black,
+  inset 0 0 100px black,
+  inset 0 0 200px black,
+  inset 0 0 300px black,
+  inset 0 0 500px black;
+}
+
+@page { size:8.5in 11in; margin: 0.25cm }
+
+html, body, #wrapper, .container {
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  line-height: 120%;
+  font-family: 'Audiowide', cursive;
+}
+
+.inner * {
+  font-family: 'Waiting for the Sunrise', cursive;
+  text-align: center;
+}
+
+.eq {
+  position: fixed;
+  pointer-events: none;
+  margin: auto;
+  width: 370px;
+  height: 156px;
+  background: none;
+  left: 37%;
+  top: 50px;
+}
+
+.eq::after {
+  background: url(../assets/braille-title.png);
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-size: contain;
+  z-index: 1;
+  mix-blend-mode: lighten;
+}
+
+.eq .band {
+  z-index: -1;
+  transition: none;
+  position: absolute;
+  background:#5681a0;
+  top: 50%;
+  bottom: 50%;
+  z-index: 1;
+  pointer-events: none;
+  margin-right: 4px;
+}
+
+.eq .band::after {
+  content: "";
+  transition: none;
+  position: absolute;
+  background: #5681a0;
+  width: 100%;
+  top: -100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  pointer-events: none;
+  margin-right: 4px;
+  transform: rotate(180deg);
+}
+
+html, body, #wrapper, .container {
+  overflow: hidden;
+}
+
+.inner {
+  transition: all 0.75s linear;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  background: url(../assets/braille.png);
+  background-size: cover;
+  box-shadow: inset 0 0 400px black, inset 0 0 200px black, inset 0 0 50px black;
+  overflow: hidden;
+}
+
+/* Sections */
+.section {
+  position: fixed;
+  max-width: 960px;
+  min-width: 300px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  font-size: 140%;
+  margin: auto;
+  width: 50%;
+  height: 2.5em;
+  overflow: hidden;
+  border: none;
+  background-image: url(https://ugotsta.github.io/gitdown/assets/paper-set-textured.jpg);
+  box-shadow: inset 0 0 4px black, inset 0 0 70px black;
+}
+
+.section h3 {
+  color: rgb(211, 3, 3);
+  text-shadow: 0 0 4px rgb(211, 3, 3);
+  text-transform: uppercase;
+}
+
+.section {
+  transform: rotate(1deg);
+}
+
+.section:nth-child(even) {
+  transform: rotate(-1deg);
+}
+
+.section .content {
+  display: block;
+  position: relative;
+  text-shadow: 0 0 3px rgba(0,0,0,0.75);
+  opacity: 1;
+  padding-top: 6px;
+}
+
+.gd-default .content a {
+  color: #5681a0;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px white,2px 2px 4px black;
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 2px 8px;
+}
+
+.gd-default .content a:hover {
+  background-color: white;
+}
+
+.section a.handle {
+  pointer-events: none;
+  text-shadow: 0 0 3px rgba(0,0,0,0.5);
+}
+
+.gd-default .section a.handle {
+  text-shadow: 0 0 2px black, 3px 3px 2px black;
+  color: #5681a0;
+}
+
+.section ul {
+  padding: 20px 0px;
+  list-style: none;
+}
+
+.section p {
+  margin-bottom: 0.5em;
+}
+
+span[name="gd_track_artwork_url"] {
+  display: block;
+  float: left;
+  padding-right: 10px;
+}
+
+/* Slide related styles and animations */
+
+.section {
+  opacity: 0;
+}
+
+.section.old,
+.section.old.lo {
+  animation: out 0.5s ease;
+}
+
+.section.old.hi {
+  animation: in-reverse 0.5s ease;
+}
+
+.section.current,
+.section.current.hi {
+  opacity: 1;
+  z-index: 1;
+  animation: in 0.5s ease;
+}
+
+.section.current.lo {
+  animation: out-reverse 0.5s ease;
+}
+
+/* ANIMATIONS */
+
+@keyframes in {
+  0% { transform: scale(2); opacity: 0; }
+100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes out {
+  0% { transform: scale(1); opacity: 1; }
+100% { transform: scale(3); opacity: 0; }
+}
+
+@keyframes in-reverse {
+100% { transform: scale(2); opacity: 0; }
+0% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes out-reverse {
+  100% { transform: scale(1); opacity: 1; }
+0% { transform: scale(3); opacity: 0; }
+}
+
+/* ------------------------------------------------------------------------ */
+
+/* Info panel */
+
+.info .toc a.current {
+  color: gray;
+  pointer-events: none;
+}
+
+.info .toc a.current::before {
+  content: "> ";
+}
+
+#custom .info a:hover {
+  color: #fff;
+}
+
+/* Keypress styling */
+.info kbd {
+  color: #000;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    background: rgba(255, 255, 255, 0.2);
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.5);
+    /* border: solid whiteSmoke 4px; */
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
